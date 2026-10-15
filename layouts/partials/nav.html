@@ -1,19 +1,18 @@
 <header class="navbar" id="navbar">
   <div class="container flex items-center justify-between" style="height: 100%;">
-    <a href="#top" class="font-display font-bold text-xl text-foreground transition-colors hover:text-primary" style="letter-spacing: 0.025em;">
+    <a href="{{ .Site.BaseURL }}" class="font-display font-bold text-xl text-foreground transition-colors hover:text-primary" style="letter-spacing: 0.025em;">
       {{ .Site.Params.firstName }} {{ .Site.Params.lastName }}
     </a>
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8" style="display: none;" id="desktop-nav">
-      <button class="nav-link" data-scroll="about">About</button>
-      <button class="nav-link" data-scroll="experience">Experience</button>
-      <button class="nav-link" data-scroll="skills">Skills</button>
-      <button class="nav-link" data-scroll="education">Education</button>
-      <button class="nav-link" data-scroll="contact">Contact</button>
-      <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);" data-scroll="contact">
-        Let's Talk
-      </a>
+      {{ if or (eq .RelPermalink "/") (eq .RelPermalink "/web-portfolio/") }}
+        <button class="nav-link" data-scroll="about">О себе</button>
+        <a href="{{ .Site.BaseURL }}portfolio/" class="nav-link">Портфолио</a>
+        <button class="nav-link" data-scroll="contact">Связаться</button>
+      {{ else }}
+        <a href="{{ .Site.BaseURL }}portfolio/" class="nav-link">Портфолио</a>
+      {{ end }}
     </nav>
 
     <!-- Hamburger Button -->
@@ -36,12 +35,11 @@
 
 <!-- Mobile Menu -->
 <nav class="mobile-menu" id="mobile-menu">
-  <button class="mobile-nav-link" data-scroll="about">About</button>
-  <button class="mobile-nav-link" data-scroll="experience">Experience</button>
-  <button class="mobile-nav-link" data-scroll="skills">Skills</button>
-  <button class="mobile-nav-link" data-scroll="education">Education</button>
-  <button class="mobile-nav-link" data-scroll="contact">Contact</button>
-  <div style="margin-top: 0.5rem; margin-bottom: 0.25rem; padding: 0 0.75rem;">
-    <a href="#contact" class="btn btn-primary w-full" data-scroll="contact" style="font-size: 0.875rem;">Let's Talk</a>
-  </div>
+  {{ if or (eq .RelPermalink "/") (eq .RelPermalink "/web-portfolio/") }}
+    <button class="mobile-nav-link" data-scroll="about">О себе</button>
+    <a href="{{ .Site.BaseURL }}portfolio/" class="mobile-nav-link">Портфолио</a>
+    <button class="mobile-nav-link" data-scroll="contact">Связаться</button>
+  {{ else }}
+    <a href="{{ .Site.BaseURL }}portfolio/" class="mobile-nav-link">Портфолио</a>
+  {{ end }}
 </nav>
